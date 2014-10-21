@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
 
-    <title>reveal.js - The HTML Presentation Framework</title>
+    <title>Generative Integration Tests</title>
 
-    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-    <meta name="author" content="Hakim El Hattab">
+    <meta name="description" content="Slides for my Conj 2014 talk">
+    <meta name="author" content="Ashton Kemerling">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -42,7 +42,111 @@
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
-
+        <section>
+          <h3>Generative Integration Tests</h3>
+          <p>Ashton Kemerling</p>
+        </section>
+        <section>
+          <h3>Who I Am</h3>
+          <p>Pivotal Labs</p>
+          <p>Pivotal Tracker</p>
+        </section>
+        <section>
+          <h3>Thank You</h3>
+          <p>My Wife Leah</p>
+          <p>The Conj Organizers</p>
+        </section>
+        <section>
+          <section>
+            <h3>So, Let's Talk TDD</h3>
+          </section>
+          <section>
+            <h3>Pivotal Tracker</h3>
+            <p>Large Ruby on Rails and Javascript App</p>
+            <p>Mostly Backbone.js and some React</p>
+          </section>
+          <section>
+            <h3>TDD at Tracker</h3>
+            <ul>
+              <li>52k lines of Ruby</li>
+              <li>12k+ RSpec examples</li>
+              <li>39k lines of Javascript</li>
+              <li>7k+ Jasmine Examples</li>
+              <li>3 dedicated QA personnel + 1 on support</li>
+            </ul>
+          </section>
+          <section>
+            <h3>What's the Issue</h3>
+            <ul>
+              <li>Time</li>
+              <li>Creativity</li>
+              <li>Edge/ordering cases</li>
+              <li>Emergent behavior</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <h3>Test.Check</h3>
+          <p>Port of QuickCheck</p>
+          <p>Written by Reid Draper</p>
+          <p>Randomized property testing</p>
+        </section>
+        <section>
+          <section>
+            <h3>Generative Integration Tests</h3>
+            <p>Actions as Data</p>
+          </section>
+          <section>
+            <h3>The Parts</h3>
+            <ul>
+              <li>Generators</li>
+              <li>Action runners</li>
+              <li>Assertions</li>
+              <li>Setup helpers</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Tools</h3>
+            <ul>
+              <li>Clojure</li>
+              <li>Test.Check (or DoubleCheck)</li>
+              <li>clj-webdriver</li>
+              <li>JDBC (or similar)</li>
+              <li>clj-http (optional)</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h3>Generators</h3>
+            <p>Functions to produce data</p>
+            <p>Simple or higher-ordered</p>
+          </section>
+          <section>
+            <h3>Sample Generators</h3>
+            <ul>
+              <li>int</li>
+              <li>string</li>
+              <li>vector</li>
+              <li>not-empty</li>
+              <li>hash-map</li>
+              <li>return</li>
+              <li>elements</li>
+              <li>one-of</li>
+            </ul>
+          </section>
+          <section>
+            <h3>The Process</h3>
+            <ol>
+              <li>Macros create test case</li>
+              <li>Create bookkeeping code</li>
+              <li>Run cases</li>
+              <li>Record failures</li>
+              <li>Shrink failing cases</li>
+              <li>Report</li>
+            </ol>
+          </section>
+        </section>
       </div>
 
     </div>
@@ -61,7 +165,7 @@
       center: true,
 
       theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+      transition:  'linear', // default/cube/page/concave/zoom/linear/fade/none
 
       // Parallax scrolling
       // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
