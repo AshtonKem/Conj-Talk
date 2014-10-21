@@ -146,9 +146,77 @@
               <li>Report</li>
             </ol>
           </section>
+          <section>
+            <h3>An Action</h3>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+{:story 2198
+ :type :generative-testing.actions/drag-drop
+ :via :generative-testing.actions/selenium
+ :args 2192}
+            </code></pre>
+          </section>
+          <section>
+            <h3>A Simple Test</h3>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+(defspec drop-drop-spec 10
+  (prop/for-all [actions (gen/not-empty
+                           (gen/vector
+                             (gen/hash-map
+                               :type (gen/return :generative-testing.actions/drag-drop)
+                               :via (gen/return :generative-testing.actions/selenium)
+                               :story (gen/elements @story-ids)
+                               :args (gen/elements @story-ids))))]
+    (perform-actions db project-id actions)))
+            </code></pre>
+          </section>
+          <section>
+            <h3>A Simple Test</h3>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+(def task-generator (gen/not-empty
+                      (gen/vector
+                        (gen/hash-map
+                          :type (gen/return :generative-testing.actions/drag-drop)
+                          :via (gen/return :generative-testing.actions/selenium)
+                          :story (gen/elements @story-ids)
+                          :args (gen/elements @story-ids)))))
+
+(defspec drop-drop-spec 10
+  (prop/for-all [actions task-generator]
+    (perform-actions db project-id actions)))
+            </code></pre>
+          </section>
+          <section>
+            <h3>A Simple Test</h3>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+(def task-generator #(gen/not-empty
+                       (gen/vector
+                         (gen/hash-map
+                           :type (gen/return :generative-testing.actions/drag-drop)
+                           :via (gen/return :generative-testing.actions/selenium)
+                           :story (gen/elements @story-ids)
+                           :args (gen/elements @story-ids)))))
+
+(defspec drop-drop-spec 10
+  (prop/for-all [actions (task-generator)]
+    (perform-actions db project-id actions)))
+            </code></pre>
+          </section>
+          <section>
+            <h3>A Simple Test</h3>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+(def task-generator #(gen/hash-map
+                       :type (gen/return :generative-testing.actions/drag-drop)
+                       :via (gen/return :generative-testing.actions/selenium)
+                       :story (gen/elements @story-ids)
+                       :args (gen/elements @story-ids)))
+
+(defspec drop-drop-spec 10
+  (prop/for-all [actions (gen/not-empty (gen/vector (task-generator)))]
+    (perform-actions db project-id actions)))
+            </code></pre>
+          </section>
         </section>
       </div>
-
     </div>
 
     <script src="lib/js/head.min.js"></script>
