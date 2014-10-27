@@ -286,7 +286,60 @@
             <h2>Actions</h2>
           </section>
           <section>
-            <h3></h3>
+            <h3>High Level Basics</h3>
+            <p>Multimethods are your friends</p>
+          </section>
+          <section>
+            <h3>Strategies</h3>
+            <p>Separate context from action</p>
+            <p>Allow for different execution order (parallel, sequential)</p>
+            <p>Strategies must setup the environment for themselves</p>
+          </section>
+          <section>
+            <h3>Assertions</h3>
+            <ul>
+              <li>Belong in strategies only</li>
+              <li>May change depending on strategy</li>
+              <li>You can assert on alert text</li>
+            </ul>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px">
+(try
+  (is (re-matches #"I expected this alert" (alert-text))
+      (str "An unexpected alert popped up: " (alert-text)))
+  (when (alert-obj)
+    (accept))
+  (catch org.openqa.selenium.NoAlertPresentException e))
+            </code></pre>
+          </section>
+          <section>
+            <h3>Tolerance</h3>
+            <ul>
+              <li>Actions must be tolerant to application changes &amp; state</li>
+              <li>Invalid actions are a noop</li>
+              <li>Don't be afraid to call to JS if it makes actions more repeatable</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h3>Assertions</h3>
+          </section>
+          <section>
+            <h3>The Basics</h3>
+            <ul>
+              <li>Assertions cannot depend on input data</li>
+              <li>Each assertion must be true every time</li>
+              <li>Aim to catch serious bugs</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Trackers Assertions</h3>
+            <ul>
+              <li>All changes should synchronize (localhost)</li>
+              <li>Client/Server state parity</li>
+              <li>Presence of alerts and error dialogs</li>
+              <li>No crashes</li>
+            </ul>
           </section>
         </section>
       </div>
