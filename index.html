@@ -322,7 +322,7 @@
         </section>
         <section>
           <section>
-            <h3>Assertions</h3>
+            <h2>Assertions</h2>
           </section>
           <section>
             <h3>The Basics</h3>
@@ -341,6 +341,76 @@
               <li>No crashes</li>
             </ul>
           </section>
+          <section>
+            <h3>A Word on Performance</h3>
+            <p>Assertions can be slower than actions</p>
+            <p>Generative tests are very sensitive to performance issues</p>
+            <p>Slower assertions reduce the number of runs you can do</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>How We Use Generative Tests</h2>
+          </section>
+          <section>
+            <h3>Reproduction Step Finding</h3>
+            <p>Shrinking finds the minimal user actions to provoke a bug.</p>
+            <p>Trade blind hunting for code that searches for you</p>
+          </section>
+          <section>
+            <h3>Hitting Known Trouble Spots</h3>
+            <ul>
+              <li>Concurrency</li>
+              <li>Bits of code post refactor</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Blind Luck</h3>
+            <p>Canvasing the application as a whole can find missed errors.</p>
+            <p>Creates a very large regression net</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Gotchas</h2>
+          </section>
+          <section>
+            <h3>StaleElementErrors</h3>
+            <ul>
+              <li>I ignore them</li>
+              <li>Make sure you don't get too many</li>
+              <li>Don't keep elements in test memory</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Do I Care If An Action Does Anything?</h3>
+            <ul>
+              <li>Depends on how easy that assertion would be</li>
+              <li>I only care if the application survives</li>
+              <li>A lot of apps have noops for certain user actions</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Clj-Webdriver Gotchas</h3>
+            <ul>
+              <li>Don't depend on *driver*</li>
+              <li>Explicitly pass driver to actions</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Webdriver Logic</h3>
+            <p>Lots of promise, needs more performance</p>
+            <p>Allows for very thorough assertions</p>
+          </section>
+        </section>
+        <section>
+          <h1>Demo Time</h1>
+        </section>
+        <section>
+          <h1>Questions?</h1>
+        </section>
+        <section>
+          <h1>Thank You!</h1>
         </section>
       </div>
     </div>
