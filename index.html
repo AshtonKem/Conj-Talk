@@ -56,6 +56,13 @@
           <h3>Thank You</h3>
           <p>My Wife Leah</p>
           <p>The Conj Organizers</p>
+          <aside class="notes">
+            Don't forget:
+            <ul>
+              <li>No workind on honeymoon</li>
+              <li>Lynn Grogan for dealing with my typos and lateness</li>
+            </ul>
+          </aside>
         </section>
         <section>
           <section>
@@ -75,6 +82,9 @@
               <li>7k+ Jasmine Examples</li>
               <li>3 dedicated QA personnel + 1 on support</li>
             </ul>
+            <aside class="notes">
+              Also, external code quality tooling
+            </aside>
           </section>
           <section>
             <h3>What's the Issue</h3>
@@ -84,13 +94,10 @@
               <li>Edge/ordering cases</li>
               <li>Emergent behavior</li>
             </ul>
+            <aside class="notes">
+              You usually don't have enough time, and you can't tell when you're short on creativity.
+            </aside>
           </section>
-        </section>
-        <section>
-          <h3>Test.Check</h3>
-          <p>Port of QuickCheck</p>
-          <p>Written by Reid Draper</p>
-          <p>Randomized property testing</p>
         </section>
         <section>
           <section>
@@ -103,9 +110,14 @@
               <li>Generators</li>
               <li>Action runners</li>
               <li>Assertions</li>
-              <li>Setup helpers</li>
             </ul>
           </section>
+          <section>
+            <h3>Test.Check</h3>
+            <p>Port of QuickCheck</p>
+            <p>Written by Reid Draper</p>
+            <p>Randomized property testing</p>
+          </section>p
           <section>
             <h3>Tools</h3>
             <ul>
@@ -115,6 +127,10 @@
               <li>JDBC (or similar)</li>
               <li>clj-http (optional)</li>
             </ul>
+            <aside class="notes">
+              <p>We use JDBC for setup and assertions, replace with whatever driver you need</p>
+              <p>We use simple queries, if you need more power be very mindful of performance</p>
+            </aside>
           </section>
         </section>
         <section>
@@ -135,6 +151,9 @@
               <li>elements</li>
               <li>one-of</li>
             </ul>
+            <aside class="notes">
+              We'll see some code samples in a bit.
+            </aside>
           </section>
           <section>
             <h3>The Process</h3>
@@ -146,19 +165,22 @@
               <li>Shrink failing cases</li>
               <li>Report</li>
             </ol>
+            <aside class="notes">
+              Pause and make sure everyone is caught up
+            </aside>
           </section>
-          <section>
+          <section data-transition="none">
             <h3>An Action</h3>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
 {:story 2198
  :type :generative-testing.actions/drag-drop
  :via :generative-testing.actions/selenium
  :args 2192}
             </code></pre>
           </section>
-          <section>
+          <section data-transition="none">
             <h3>A Simple Test</h3>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
 (defspec drop-drop-spec 10
   (prop/for-all [actions (gen/not-empty
                            (gen/vector
@@ -170,9 +192,9 @@
     (perform-actions db project-id actions)))
             </code></pre>
           </section>
-          <section>
+          <section data-transition="none">
             <h3>A Simple Test</h3>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
 (def task-generator (gen/not-empty
                       (gen/vector
                         (gen/hash-map
@@ -186,9 +208,9 @@
     (perform-actions db project-id actions)))
             </code></pre>
           </section>
-          <section>
+          <section data-transition="none">
             <h3>A Simple Test</h3>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
 (def task-generator #(gen/not-empty
                        (gen/vector
                          (gen/hash-map
@@ -202,9 +224,9 @@
     (perform-actions db project-id actions)))
             </code></pre>
           </section>
-          <section>
+          <section data-transition="none">
             <h3>A Simple Test</h3>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
 (def task-generator #(gen/hash-map
                        :type (gen/return :generative-testing.actions/drag-drop)
                        :via (gen/return :generative-testing.actions/selenium)
@@ -219,7 +241,7 @@
           <section>
             <h3>Separate Out Your Generators</h3>
             <p>This is a Nightmare</p>
-            <pre><code data-trim contenteditable style="font-size: 10px; margin-top: 20px; line-height: 10px;">
+            <pre><code data-trim style="font-size: 10px; margin-top: 20px; line-height: 10px;">
 (def generators #(gen/one-of [(gen/hash-map
                                :type (gen/return :generative-testing.actions/change-state)
                                :story (gen/elements (map :id (filter (comp (partial = "feature") :story_type)
@@ -263,7 +285,7 @@
           </section>
           <section>
             <h3>This is Manageable</h3>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px">
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px">
 (def all-generators #(gen/one-of
                        [(state-generator)
                         (type-generator)
@@ -302,7 +324,7 @@
               <li>May change depending on strategy</li>
               <li>You can assert on alert text</li>
             </ul>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px">
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px">
 (try
   (is (re-matches #"I expected this alert" (alert-text))
       (str "An unexpected alert popped up: " (alert-text)))
