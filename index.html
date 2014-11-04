@@ -66,7 +66,7 @@
         </section>
         <section>
           <section>
-            <h3>So, Let's Talk TDD</h3>
+            <h2>So, Let's Talk TDD</h2>
           </section>
           <section>
             <h3>Pivotal Tracker</h3>
@@ -100,9 +100,34 @@
           </section>
         </section>
         <section>
+          <h3>Generative Integration Tests</h3>
+          <p>Actions as Data</p>
+        </section>
+        <section>
           <section>
-            <h3>Generative Integration Tests</h3>
-            <p>Actions as Data</p>
+            <h2>How We Use Generative Tests</h2>
+          </section>
+          <section>
+            <h3>Reproduction Step Finding</h3>
+            <p>Shrinking finds the minimal user actions to provoke a bug.</p>
+            <p>Trade blind hunting for code that searches for you</p>
+          </section>
+          <section>
+            <h3>Hitting Known Trouble Spots</h3>
+            <ul>
+              <li>Concurrency</li>
+              <li>Bits of code post refactor</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Blind Luck</h3>
+            <p>Canvasing the application as a whole can find missed errors.</p>
+            <p>Creates a very large regression net</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Tools and Such</h2>
           </section>
           <section>
             <h3>The Parts</h3>
@@ -131,28 +156,6 @@
               <p>We use JDBC for setup and assertions, replace with whatever driver you need</p>
               <p>We use simple queries, if you need more power be very mindful of performance</p>
             </aside>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>How We Use Generative Tests</h2>
-          </section>
-          <section>
-            <h3>Reproduction Step Finding</h3>
-            <p>Shrinking finds the minimal user actions to provoke a bug.</p>
-            <p>Trade blind hunting for code that searches for you</p>
-          </section>
-          <section>
-            <h3>Hitting Known Trouble Spots</h3>
-            <ul>
-              <li>Concurrency</li>
-              <li>Bits of code post refactor</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Blind Luck</h3>
-            <p>Canvasing the application as a whole can find missed errors.</p>
-            <p>Creates a very large regression net</p>
           </section>
         </section>
         <section>
@@ -191,24 +194,24 @@
               Pause and make sure everyone is caught up
             </aside>
           </section>
-          <section data-transition="none">
+          <section>
             <h3>An Action</h3>
             <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
 {:story 2198
- :type :generative-testing.actions/drag-drop
- :via :generative-testing.actions/selenium
+ :type ::drag-drop
+ :via ::selenium
  :args 2192}
             </code></pre>
           </section>
-          <section data-transition="none">
+          <section>
             <h3>A Simple Test</h3>
             <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
 (defspec drop-drop-spec 10
   (prop/for-all [actions (gen/not-empty
                            (gen/vector
                              (gen/hash-map
-                               :type (gen/return :generative-testing.actions/drag-drop)
-                               :via (gen/return :generative-testing.actions/selenium)
+                               :type (gen/return ::drag-drop)
+                               :via (gen/return ::selenium)
                                :story (gen/elements @story-ids)
                                :args (gen/elements @story-ids))))]
     (perform-actions db project-id actions)))
