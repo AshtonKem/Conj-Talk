@@ -105,6 +105,9 @@
         <section>
           <section>
             <h2>Generative Testing</h2>
+            <aside class="notes">
+              Check to see who has used Test.Check or QuickCheck.
+            </aside>
           </section>
           <section>
             <h3>The Benefits of Generative Testing</h3>
@@ -185,6 +188,41 @@
             <aside class="notes">
               Pause and make sure everyone is caught up
             </aside>
+          </section>
+          <section>
+            <h3>Example Test</h3>
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
+(defspec first-element-is-min-after-sorting ;; the name of the test
+         100 ;; the number of iterations for test.check to test
+         (prop/for-all [v (gen/not-empty (gen/vector gen/int))]
+           (= (apply min v)
+              (first (sort v)))))
+            </code></pre>
+            <aside class="notes">
+              This is from the Test.Check docs. More complicated examples left as an exercise to reader.
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>The Process</h2>
+          </section>
+          <section>
+            <h3>Before All Tests</h3>
+            <ol>
+              <li>Copy/Setup database state</li>
+              <li>Setup browser(s)</li>
+            </ol>
+          </section>
+          <section>
+            <h3>Before each run</h3>
+            <ol>
+              <li>Restore database state</li>
+              <li>Refresh browser(s) and clear caches</li>
+              <li>Generate actions</li>
+              <li>Execute actions</li>
+              <li>Assert</li>
+            </ol>
           </section>
         </section>
         <section>
