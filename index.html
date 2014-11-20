@@ -308,14 +308,6 @@
               <li>May change depending on strategy</li>
               <li>You can assert on alert text</li>
             </ul>
-            <pre><code data-trim style="font-size: 18px; margin-top: 20px">
-(try
-  (is (re-matches #"I expected this alert" (alert-text))
-      (str "An unexpected alert popped up: " (alert-text)))
-  (when (alert-obj)
-    (accept))
-  (catch org.openqa.selenium.NoAlertPresentException e))
-            </code></pre>
           </section>
           <section>
             <h3>Tolerance</h3>
