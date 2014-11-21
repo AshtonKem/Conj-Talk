@@ -295,6 +295,10 @@
           <section>
             <h3>High Level Basics</h3>
             <p>Multimethods are your friends</p>
+            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
+(defmulti perform-action
+  (fn [type via project-id story args] [type via]))
+              </code></pre>
           </section>
           <section>
             <h3>Strategies</h3>
