@@ -186,9 +186,9 @@
           </section>
           <section>
             <h3>Example Test</h3>
-            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
-(defspec first-element-is-min-after-sorting ;; the name of the test
-         100 ;; the number of iterations for test.check to test
+            <pre><code data-trim style="font-size: 24px; line-height: 30px; margin-top: 20px;">
+(defspec first-element-is-min-after-sorting
+         100
          (prop/for-all [v (gen/not-empty (gen/vector gen/int))]
            (= (apply min v)
               (first (sort v)))))
@@ -252,7 +252,7 @@
           </section>
           <section>
             <h3>An Action</h3>
-            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim style="font-size: 28px; line-height: 30px; margin-top: 20px;">
 {:story 2198
  :type ::drag-drop
  :via ::selenium
@@ -261,7 +261,7 @@
           </section>
           <section>
             <h3>A Simple Test</h3>
-            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim style="font-size: 22px; line-height: 28px; margin-top: 20px;">
 (defspec drop-drop-spec 10
   (prop/for-all [actions (gen/not-empty
                            (gen/vector
@@ -289,7 +289,7 @@
           <section>
             <h3>High Level Basics</h3>
             <p>Multimethods are your friends</p>
-            <pre><code data-trim style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim style="font-size: 28px; line-height: 28px; margin-top: 20px;">
 (defmulti perform-action
   (fn [type via project-id story args] [type via]))
               </code></pre>
